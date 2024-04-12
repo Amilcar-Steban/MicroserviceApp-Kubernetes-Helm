@@ -1,0 +1,4 @@
+redis==2.10.6
+py_zipkin
+requests
+cython

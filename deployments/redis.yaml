@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+spec:
+  replicas: 2  # Puedes ajustar el número de réplicas según tus necesidades
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:alpine  # Utiliza la imagen oficial de Redis desde Docker Hub
+        ports:
+        - containerPort: 6379  # Puerto por defecto de Redis
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+spec:
+  selector:
+    app: redis
+  ports:
+    - protocol: TCP
+      port: 6379  # Puerto expuesto por el servicio
+      targetPort: 6379  # Puerto del contenedor donde está escuchando Redis
