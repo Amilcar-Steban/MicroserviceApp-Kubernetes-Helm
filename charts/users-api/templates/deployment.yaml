@@ -35,6 +35,13 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          env:
+            - name: SPRING_ZIPKIN_BASE_URL
+              value: "{{ .Values.env.SPRING_ZIPKIN_BASE_URL }}"
+            - name: JWT_SECRET
+              value: "{{ .Values.env.JWT_SECRET }}"
+            - name: SERVER_PORT
+              value: "{{ .Values.env.SERVER_PORT }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http

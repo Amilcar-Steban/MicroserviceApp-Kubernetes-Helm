@@ -96,3 +96,8 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+env:
+  SPRING_ZIPKIN_BASE_URL: http://zipkin:9411
+  JWT_SECRET: PRFT
+  SERVER_PORT: 8083
